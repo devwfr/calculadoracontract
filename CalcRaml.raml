@@ -1,0 +1,64 @@
+#%RAML 1.0
+title: Calculadora Raml
+version: 1.0
+baseUri: http://localhost:port
+
+types:
+  operando: !include https://gist.githubusercontent.com/devwfr/beab5ed0dd290f05cd1a09a8f71ab38d/raw/cd19e0f7c936288904b1e1751a0f7b5e97823dec/OperandosShema.schema
+  resultado: !include https://gist.githubusercontent.com/devwfr/36d730f1a40660372dc03b2b0c56aaaf/raw/33f974e43c92ed5e88daf4e6c4d9d92d1b0054e9/ResultadoSchema.schema
+
+/calc:
+  /add:
+    description: Representa la operación de suma
+    get:
+      queryParameters:
+        num1: integer
+          example:
+            num1:1
+        num2: integer
+          example:
+            num2:2
+      responses:
+        200:
+          body:
+            application/json:
+              type: resultado
+              example: !include Resultado.sample
+  /sub:
+    description: Representa la operación de resta
+    delete:
+      body:
+        application/json:
+          type: operando
+          example: !include Operandos.sample
+      responses:
+        200:
+          body:
+            application/json:
+              type: resultado
+              example: !include Resultado.sample
+  /mul:
+    description: Representa la operación de multiplicación
+    post:
+      body:
+        application/json:
+          type: operando
+          example: !include Operandos.sample
+      responses:
+        200:
+          body:
+            application/json:
+              type: resultado
+              example: !include Resultado.sample
+  /div:
+    description: Representa la operación de división
+    put:
+      queryParameters:
+        num1: integer
+        num2: integer
+      responses:
+        200:
+          body:
+            application/json:
+              type: resultado
+              example: !include Resultado.sample

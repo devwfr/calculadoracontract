@@ -1,0 +1,96 @@
+openapi: 3.0.2
+info:
+  title: Calculadora OAS
+  version: 1.0.0
+servers:
+- url: http://localhost:port
+tags:
+- name: calc
+
+paths:
+  /calc/add:
+    get:
+      tags: 
+      - calc
+      summary: Representa la operación de suma 
+      parameters:
+      - name: num1
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: num2
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: 'https://gist.githubusercontent.com/devwfr/36d730f1a40660372dc03b2b0c56aaaf/raw/33f974e43c92ed5e88daf4e6c4d9d92d1b0054e9/ResultadoSchema.schema' 
+  /calc/sub:
+    patch:
+      tags: 
+      - calc
+      summary: Representa la operación de resta 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'https://gist.githubusercontent.com/devwfr/beab5ed0dd290f05cd1a09a8f71ab38d/raw/cd19e0f7c936288904b1e1751a0f7b5e97823dec/OperandosShema.schema'  
+         
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: 'https://gist.githubusercontent.com/devwfr/36d730f1a40660372dc03b2b0c56aaaf/raw/33f974e43c92ed5e88daf4e6c4d9d92d1b0054e9/ResultadoSchema.schema'           
+  /calc/mul:
+    post:
+      tags: 
+      - calc
+      summary: Representa la operación de multiplicacion 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'https://gist.githubusercontent.com/devwfr/beab5ed0dd290f05cd1a09a8f71ab38d/raw/cd19e0f7c936288904b1e1751a0f7b5e97823dec/OperandosShema.schema'     
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: 'https://gist.githubusercontent.com/devwfr/36d730f1a40660372dc03b2b0c56aaaf/raw/33f974e43c92ed5e88daf4e6c4d9d92d1b0054e9/ResultadoSchema.schema'             
+               
+  /calc/div:
+    put:
+      tags: 
+      - calc
+      summary: Representa la operación de división 
+      parameters:
+      - name: num1
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: num2
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+               $ref: 'https://gist.githubusercontent.com/devwfr/36d730f1a40660372dc03b2b0c56aaaf/raw/33f974e43c92ed5e88daf4e6c4d9d92d1b0054e9/ResultadoSchema.schema'   
+  
+  
